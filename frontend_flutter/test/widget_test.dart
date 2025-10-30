@@ -3,16 +3,21 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:frontend_flutter/main.dart';
 
 void main() {
-  testWidgets('App generation message displayed', (WidgetTester tester) async {
-    await tester.pumpWidget(const MyApp());
+  testWidgets('App renders SmartSpender root with tabs', (WidgetTester tester) async {
+    await tester.pumpWidget(const SmartSpenderApp());
 
-    expect(find.text('frontend_flutter App is being generated...'), findsOneWidget);
-    expect(find.byType(CircularProgressIndicator), findsOneWidget);
+    // Verify bottom navigation destinations exist
+    expect(find.byIcon(Icons.home_outlined), findsOneWidget);
+    expect(find.text('Home'), findsOneWidget);
   });
 
-  testWidgets('App bar has correct title', (WidgetTester tester) async {
-    await tester.pumpWidget(const MyApp());
+  testWidgets('Home screen shows key KPI labels', (WidgetTester tester) async {
+    await tester.pumpWidget(const SmartSpenderApp());
+    await tester.pumpAndSettle();
 
-    expect(find.text('frontend_flutter'), findsOneWidget);
+    expect(find.text('SmartSpender'), findsOneWidget);
+    expect(find.text('Total Balance'), findsOneWidget);
+    expect(find.text('Income'), findsOneWidget);
+    expect(find.text('Expenses'), findsOneWidget);
   });
 }
