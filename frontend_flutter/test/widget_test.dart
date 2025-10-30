@@ -6,9 +6,13 @@ void main() {
   testWidgets('App renders SmartSpender root with tabs', (WidgetTester tester) async {
     await tester.pumpWidget(const SmartSpenderApp());
 
-    // Verify bottom navigation destinations exist
+    // Verify bottom navigation exists
     expect(find.byIcon(Icons.home_outlined), findsOneWidget);
     expect(find.text('Home'), findsOneWidget);
+    expect(find.text('Dashboard'), findsOneWidget);
+    expect(find.text('Add'), findsOneWidget);
+    expect(find.text('Transactions'), findsOneWidget);
+    expect(find.text('Profile'), findsOneWidget);
   });
 
   testWidgets('Home screen shows key KPI labels', (WidgetTester tester) async {
